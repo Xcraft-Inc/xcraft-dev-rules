@@ -29,16 +29,24 @@ files.forEach (item => {
   /* special git stuff */
   if (item.type === 'git') {
     const gitDir = path.join (root, '.git');
-    const st = fse.statSync (gitDir);
-    if (st && st.isFile ()) {
-      /* search for the real .git directory */
-      const data = fse.readFileSync (gitDir);
-      if (data) {
-        item.outDir = path.join (
-          data.toString ().replace (/^gitdir: /, '').replace ('\n', ''),
-          item.outDir
-        );
+    try {
+      const st = fse.statSync (gitDir);
+      if (st && st.isFile ()) {
+        /* search for the real .git directory */
+        const data = fse.readFileSync (gitDir);
+        if (data) {
+          item.outDir = path.join (
+            data.toString ().replace (/^gitdir: /, '').replace ('\n', ''),
+            item.outDir
+          );
+        }
       }
+    } catch (ex) {
+      if (ex.code !== 'ENOENT') {
+        throw ex;
+      }
+      console.log ('skip hook deploy because we are not in a git repository');
+      return;
     }
   }
 

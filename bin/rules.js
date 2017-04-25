@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 'use strict';
 
-const root = __dirname.replace (/(.*)[\\/]node_modules[\\/].*/, '$1');
-if (!root.length) {
-  process.exit (0);
-}
-
 const path = require ('path');
 const fse = require ('fs-extra');
+
+const root = __dirname.replace (/(.*)[\\/]node_modules[\\/].*/, '$1');
+if (!root.length || root === __dirname) {
+  process.exit (0);
+}
 
 const files = [
   {

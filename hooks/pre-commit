@@ -2,7 +2,7 @@
 jsfiles=$(git diff --cached --name-only --diff-filter=ACM | grep '\.jsx\?$' | tr '\n' ' ')
 [ -z "$jsfiles" ] && exit 0
 
-diffs=$(node_modules/.bin/prettier-space-parenthesis -l $jsfiles)
+diffs=$(node_modules/.bin/prettier-space-parenthesis --single-quote --trailing-comma=es5 --parenthesis-space -l $jsfiles)
 [ -z "$diffs" ] && exit 0
 
 echo "here"

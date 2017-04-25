@@ -6,8 +6,9 @@ diffs=$(node_modules/.bin/prettier-space-parenthesis -l $jsfiles)
 [ -z "$diffs" ] && exit 0
 
 echo "here"
-echo >&2 "Javascript files must be formatted with prettier-space-parenthesis. Please run:"
-echo >&2 "node_modules/.bin/prettier-space-parenthesis --write "$diffs""
-echo >&2 "or install the prettier-atom-space-parenthesis module"
+echo >&2 "Javascript files must be formatted with prettier-space-parenthesis."
+echo >&2 "Please run:"
+echo >&2 "node_modules/.bin/prettier-space-parenthesis --single-quote --trailing-comma=es5 --parenthesis-space --write "$diffs""
+echo >&2 "or install the prettier-atom-space-parenthesis module in the Atom editor"
 
 exit 1

@@ -41,7 +41,7 @@ files.forEach (item => {
           );
         }
       } else if (st && st.isDirectory ()) {
-        item.outDir = path.join (gitDir, item.outDir);
+        item.outDir = path.join ('.git', item.outDir);
       } else {
         throw {code: 'ENOENT'};
       }

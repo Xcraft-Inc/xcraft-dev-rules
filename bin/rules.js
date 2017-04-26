@@ -65,5 +65,10 @@ files.forEach (item => {
     );
   }
 
-  fse.copySync (src, dst);
+  /* FIXME: use streams */
+  const fileNorm = require ('file-normalize');
+  fse.writeFileSync (
+    dst,
+    fileNorm.normalizeEOL (fse.readFileSync (src).toString ())
+  );
 });

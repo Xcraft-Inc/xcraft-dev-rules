@@ -40,6 +40,10 @@ files.forEach (item => {
             item.outDir
           );
         }
+      } else if (st && st.isDirectory ()) {
+        item.outDir = path.join (gitDir, item.outDir);
+      } else {
+        throw {code: 'ENOENT'};
       }
     } catch (ex) {
       if (ex.code !== 'ENOENT') {

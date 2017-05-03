@@ -1,8 +1,22 @@
 #!/bin/sh
+
 jsfiles=$(git diff --cached --name-only --diff-filter=ACM | grep '\.jsx\?$' | tr '\n' ' ')
 [ -z "$jsfiles" ] && exit 0
 
-diffs=$(node_modules/.bin/prettier-space-parenthesis --single-quote --no-bracket-spacing --trailing-comma=es5 --parenthesis-space -l $jsfiles)
+if [ -f "node_modules/.bin/prettier-space-parenthesis" ]; then
+  bin="node_modules/.bin/prettier-space-parenthesis"
+else
+  rootdir=$(cat .git | sed 's,gitdir: \(.*\)/\.git.*,\1,')
+  if [ -f "$rootdir/node_modules/.bin/prettier-space-parenthesis" ]; then
+    bin="$rootdir/node_modules/.bin/prettier-space-parenthesis"
+  else
+    echo >&2 "node_modules/.bin/prettier-space-parenthesis is not available"
+    echo >&2 "Please, install your modules with `npm install`."
+    exit 1
+  fi
+fi
+
+diffs=$($bin --single-quote --no-bracket-spacing --trailing-comma=es5 --parenthesis-space -l $jsfiles)
 [ -z "$diffs" ] && exit 0
 
 echo "here"

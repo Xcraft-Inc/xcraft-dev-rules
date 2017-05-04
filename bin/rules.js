@@ -60,7 +60,9 @@ files.forEach (item => {
   console.log (`try to copy ${item.file} to ${dst}`);
 
   if (fse.existsSync (dst)) {
-    console.warn (`your current ${path.basename (item.file)} will be overwritten`);
+    console.warn (
+      `your current ${path.basename (item.file)} will be overwritten`
+    );
   }
 
   /* FIXME: use streams */

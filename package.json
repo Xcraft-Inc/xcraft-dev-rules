@@ -15,7 +15,7 @@
   ],
   "author": "Mathieu Schroeter",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^7.0.1",
     "file-normalize": "^1.1.1",

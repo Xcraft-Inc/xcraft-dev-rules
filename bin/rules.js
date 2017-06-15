@@ -65,6 +65,8 @@ files.forEach (item => {
     );
   }
 
+  fse.mkdirpSync (path.dirname (dst));
+
   /* FIXME: use streams */
   const fileNorm = require ('file-normalize');
   fse.writeFileSync (

@@ -28,6 +28,7 @@ echo >&2 "Javascript files must be formatted with prettier-space-parenthesis."
 echo >&2 "Please run:"
 echo >&2 "node_modules/.bin/prettier-space-parenthesis --single-quote --no-bracket-spacing --trailing-comma=es5 --parenthesis-space --write "$diffs""
 echo >&2 "or install the prettier-atom-space-parenthesis module in the Atom editor"
+echo >&2 "and the prettier-vscode-space-parenthesis module in the VS Code editor"
 
 exit 1
 

@@ -1,5 +1,9 @@
 #!/bin/sh
 
+################################################################################
+# xcraft-dev-rules - BEGIN
+################################################################################
+
 jsfiles=$(git diff --cached --name-only --diff-filter=ACM | grep '\.jsx\?$' | tr '\n' ' ')
 [ -z "$jsfiles" ] && exit 0
 
@@ -26,3 +30,7 @@ echo >&2 "node_modules/.bin/prettier-space-parenthesis --single-quote --no-brack
 echo >&2 "or install the prettier-atom-space-parenthesis module in the Atom editor"
 
 exit 1
+
+################################################################################
+# xcraft-dev-rules - END
+################################################################################

@@ -54,8 +54,12 @@ files.forEach (item => {
     }
   }
 
+  if (!path.isAbsolute (item.outDir)) {
+    item.outDir = path.join (root, item.outDir);
+  }
+
   const src = path.join (__dirname, '..', item.file);
-  const dst = path.join (root, item.outDir, path.basename (item.file));
+  const dst = path.join (item.outDir, path.basename (item.file));
 
   console.log (`try to copy ${item.file} to ${dst}`);
 

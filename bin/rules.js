@@ -26,8 +26,11 @@ const files = [
 ];
 
 files.forEach(item => {
+  let options = null;
+
   /* special git stuff */
   if (item.type === 'git') {
+    options = {mode: 0o755};
     const gitDir = path.join(root, '.git');
     try {
       const st = fse.statSync(gitDir);
@@ -78,6 +81,7 @@ files.forEach(item => {
   const fileNorm = require('file-normalize');
   fse.writeFileSync(
     dst,
-    fileNorm.normalizeEOL(fse.readFileSync(src).toString())
+    fileNorm.normalizeEOL(fse.readFileSync(src).toString()),
+    options
   );
 });

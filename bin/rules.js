@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 'use strict';
 
-const path = require ('path');
-const fse = require ('fs-extra');
+const path = require('path');
+const fse = require('fs-extra');
 
-const root = __dirname.replace (/(.*?)[\\/]node_modules[\\/].*/, '$1');
+const root = __dirname.replace(/(.*?)[\\/]node_modules[\\/].*/, '$1');
 if (!root.length || root === __dirname) {
-  process.exit (0);
+  process.exit(0);
 }
 
 const files = [
@@ -25,23 +25,26 @@ const files = [
   },
 ];
 
-files.forEach (item => {
+files.forEach(item => {
   /* special git stuff */
   if (item.type === 'git') {
-    const gitDir = path.join (root, '.git');
+    const gitDir = path.join(root, '.git');
     try {
-      const st = fse.statSync (gitDir);
-      if (st && st.isFile ()) {
+      const st = fse.statSync(gitDir);
+      if (st && st.isFile()) {
         /* search for the real .git directory */
-        const data = fse.readFileSync (gitDir);
+        const data = fse.readFileSync(gitDir);
         if (data) {
-          item.outDir = path.join (
-            data.toString ().replace (/^gitdir: /, '').replace ('\n', ''),
+          item.outDir = path.join(
+            data
+              .toString()
+              .replace(/^gitdir: /, '')
+              .replace('\n', ''),
             item.outDir
           );
         }
-      } else if (st && st.isDirectory ()) {
-        item.outDir = path.join ('.git', item.outDir);
+      } else if (st && st.isDirectory()) {
+        item.outDir = path.join('.git', item.outDir);
       } else {
         throw {code: 'ENOENT'};
       }
@@ -49,32 +52,32 @@ files.forEach (item => {
       if (ex.code !== 'ENOENT') {
         throw ex;
       }
-      console.log ('skip hook deploy because we are not in a git repository');
+      console.log('skip hook deploy because we are not in a git repository');
       return;
     }
   }
 
-  if (!path.isAbsolute (item.outDir)) {
-    item.outDir = path.join (root, item.outDir);
+  if (!path.isAbsolute(item.outDir)) {
+    item.outDir = path.join(root, item.outDir);
   }
 
-  const src = path.join (__dirname, '..', item.file);
-  const dst = path.join (item.outDir, path.basename (item.file));
+  const src = path.join(__dirname, '..', item.file);
+  const dst = path.join(item.outDir, path.basename(item.file));
 
-  console.log (`try to copy ${item.file} to ${dst}`);
+  console.log(`try to copy ${item.file} to ${dst}`);
 
-  if (fse.existsSync (dst)) {
-    console.warn (
-      `your current ${path.basename (item.file)} will be overwritten`
+  if (fse.existsSync(dst)) {
+    console.warn(
+      `your current ${path.basename(item.file)} will be overwritten`
     );
   }
 
-  fse.mkdirpSync (path.dirname (dst));
+  fse.mkdirpSync(path.dirname(dst));
 
   /* FIXME: use streams */
-  const fileNorm = require ('file-normalize');
-  fse.writeFileSync (
+  const fileNorm = require('file-normalize');
+  fse.writeFileSync(
     dst,
-    fileNorm.normalizeEOL (fse.readFileSync (src).toString ())
+    fileNorm.normalizeEOL(fse.readFileSync(src).toString())
   );
 });

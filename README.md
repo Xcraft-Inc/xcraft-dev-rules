@@ -1,4 +1,3 @@
-
 # Xcraft rules for development
 
 This module provides files in order to enforce some rules with the

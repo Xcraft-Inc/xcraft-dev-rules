@@ -19,6 +19,10 @@ const files = [
     outDir: '.',
   },
   {
+    file: '.prettierrc',
+    outDir: '.',
+  },
+  {
     file: 'hooks/pre-commit',
     outDir: 'hooks',
     type: 'git',

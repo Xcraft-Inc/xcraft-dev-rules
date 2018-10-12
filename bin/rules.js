@@ -89,3 +89,23 @@ files.forEach(item => {
     options
   );
 });
+
+/* Copy the prettier dependency to the package.json project file */
+
+const inPackageJson = path.join(__dirname, '../package.json');
+const inPackageDef = fse.readFileSync(inPackageJson);
+const inDef = JSON.parse(inPackageDef);
+
+const outPackageJson = path.join(root, 'package.json');
+const outPackageDef = fse.readFileSync(outPackageJson);
+const outDef = JSON.parse(outPackageDef);
+
+if (!outDef.devDependencies) {
+  outDef.devDependencies = {};
+}
+
+if (!outDef.dependencies.prettier && !outDef.devDependencies.prettier) {
+  outDef.devDependencies.prettier = inDef.dependencies.prettier;
+  fse.writeFileSync(outPackageJson, JSON.stringify(outDef, null, 2));
+  console.log('inject prettier in the package.json file');
+}

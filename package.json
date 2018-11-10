@@ -1,6 +1,6 @@
 {
   "name": "xcraft-dev-rules",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Xcraft source code development rules",
   "bin": {
     "xcraft-dev-rules": "bin/rules.js"

@@ -104,8 +104,13 @@ if (!outDef.devDependencies) {
   outDef.devDependencies = {};
 }
 
-if (!outDef.dependencies.prettier && !outDef.devDependencies.prettier) {
+if (outDef.dependencies.prettier) {
+  outDef.dependencies.prettier = inDef.dependencies.prettier;
+} else if (
+  outDef.dependencies.prettier ||
+  (!outDef.devDependencies.prettier && !outDef.dependencies.prettier)
+) {
   outDef.devDependencies.prettier = inDef.dependencies.prettier;
-  fse.writeFileSync(outPackageJson, JSON.stringify(outDef, null, 2));
-  console.log('inject prettier in the package.json file');
 }
+fse.writeFileSync(outPackageJson, JSON.stringify(outDef, null, 2));
+console.log('inject prettier in the package.json file');

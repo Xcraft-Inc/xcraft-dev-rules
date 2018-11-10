@@ -107,8 +107,8 @@ if (!outDef.devDependencies) {
 if (outDef.dependencies.prettier) {
   outDef.dependencies.prettier = inDef.dependencies.prettier;
 } else if (
-  outDef.dependencies.prettier ||
-  (!outDef.devDependencies.prettier && !outDef.dependencies.prettier)
+  outDef.devDependencies.prettier ||
+  (!outDef.dependencies.prettier && !outDef.devDependencies.prettier)
 ) {
   outDef.devDependencies.prettier = inDef.dependencies.prettier;
 }

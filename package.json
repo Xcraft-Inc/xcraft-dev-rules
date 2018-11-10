@@ -23,6 +23,6 @@
     "eslint-plugin-react": "^7.11.1",
     "file-normalize": "^1.1.2",
     "fs-extra": "^7.0.1",
-    "prettier": "^1.15.1"
+    "prettier": "1.15.1"
   }
 }

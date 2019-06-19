@@ -19,10 +19,6 @@ const files = [
     outDir: '.',
   },
   {
-    file: '.prettierrc',
-    outDir: '.',
-  },
-  {
     file: 'hooks/pre-commit',
     outDir: 'hooks',
     type: 'git',
@@ -106,11 +102,17 @@ if (!outDef.devDependencies) {
 
 if (outDef.dependencies.prettier) {
   outDef.dependencies.prettier = inDef.dependencies.prettier;
+  outDef.dependencies['xcraft-dev-prettier'] =
+    inDef.dependencies['xcraft-dev-prettier'];
 } else if (
   outDef.devDependencies.prettier ||
   (!outDef.dependencies.prettier && !outDef.devDependencies.prettier)
 ) {
   outDef.devDependencies.prettier = inDef.dependencies.prettier;
+  outDef.devDependencies['xcraft-dev-prettier'] =
+    inDef.dependencies['xcraft-dev-prettier'];
 }
+outDef.prettier = 'xcraft-dev-prettier';
+
 fse.writeFileSync(outPackageJson, JSON.stringify(outDef, null, 2));
 console.log('inject prettier in the package.json file');

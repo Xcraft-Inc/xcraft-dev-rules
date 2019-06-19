@@ -100,7 +100,7 @@ if (!outDef.devDependencies) {
   outDef.devDependencies = {};
 }
 
-if (outDef.dependencies.prettier) {
+if (outDef.dependencies && outDef.dependencies.prettier) {
   outDef.dependencies.prettier = inDef.dependencies.prettier;
   outDef.dependencies['xcraft-dev-prettier'] =
     inDef.dependencies['xcraft-dev-prettier'];

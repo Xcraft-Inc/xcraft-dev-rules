@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "description": "Xcraft source code development rules",
   "bin": {
-    "xcraft-dev-rules": "bin/rules.js"
+    "xcraft-dev-rules": "bin/rules.js",
+    "xcraft-complete-dev-deps": "bin/completeDevDeps.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,6 +25,7 @@
     "file-normalize": "^1.1.2",
     "fs-extra": "^9.0.0",
     "prettier": "2.0.4",
+    "xcraft-core-fs": "^2.4.0",
     "xcraft-dev-prettier": "^2.0.0"
   },
   "prettier": "xcraft-dev-prettier"

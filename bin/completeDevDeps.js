@@ -19,7 +19,7 @@ function completeDevDeps(bundlePath) {
       }
 
       Object.keys(_package.devDependencies)
-        .filter((pkg) => !/^xcraft-|goblin-/.test(pkg))
+        .filter((pkg) => /^xcraft-|goblin-/.test(pkg))
         .forEach((pkg) => delete _package.devDependencies[pkg]);
 
       deps = {...deps, ..._package.devDependencies};

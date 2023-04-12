@@ -18,47 +18,10 @@ const files = [
     file: '.eslintrc.js',
     outDir: '.',
   },
-  {
-    file: 'hooks/pre-commit',
-    outDir: 'hooks',
-    type: 'git',
-  },
 ];
 
-files.forEach(item => {
+files.forEach((item) => {
   let options = null;
-
-  /* special git stuff */
-  if (item.type === 'git') {
-    options = {mode: 0o755};
-    const gitDir = path.join(root, '.git');
-    try {
-      const st = fse.statSync(gitDir);
-      if (st && st.isFile()) {
-        /* search for the real .git directory */
-        const data = fse.readFileSync(gitDir);
-        if (data) {
-          item.outDir = path.join(
-            data
-              .toString()
-              .replace(/^gitdir: /, '')
-              .replace('\n', ''),
-            item.outDir
-          );
-        }
-      } else if (st && st.isDirectory()) {
-        item.outDir = path.join('.git', item.outDir);
-      } else {
-        throw {code: 'ENOENT'};
-      }
-    } catch (ex) {
-      if (ex.code !== 'ENOENT') {
-        throw ex;
-      }
-      console.log('skip hook deploy because we are not in a git repository');
-      return;
-    }
-  }
 
   if (!path.isAbsolute(item.outDir)) {
     item.outDir = path.join(root, item.outDir);

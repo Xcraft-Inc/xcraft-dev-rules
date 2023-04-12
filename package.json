@@ -3,12 +3,12 @@
   "version": "4.0.0",
   "description": "Xcraft source code development rules",
   "bin": {
-    "xcraft-dev-rules": "bin/rules.js",
+    "xcraft-dev-rules": "bin/copyDevStuff.js",
     "xcraft-complete-dev-deps": "bin/completeDevDeps.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node bin/rules.js"
+    "postinstall": "node bin/copyDevStuff.js"
   },
   "keywords": [
     "xcraft",

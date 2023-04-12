@@ -2,7 +2,7 @@
 'use strict';
 
 const path = require('path');
-const fse = require('fs-extra');
+const {fse} = require('xcraft-core-fs');
 
 const root = __dirname.replace(/(.*?)[\\/]node_modules[\\/].*/, '$1');
 if (!root.length || root === __dirname) {

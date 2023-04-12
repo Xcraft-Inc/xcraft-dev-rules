@@ -3,7 +3,6 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 7,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
@@ -11,11 +10,10 @@ module.exports = {
   },
   env: {
     browser: true,
+    es2020: true,
     mocha: true,
     node: true,
-    es6: true,
   },
-  parser: 'babel-eslint',
   plugins: ['react', 'babel', 'jsdoc'],
   extends: [
     'prettier',

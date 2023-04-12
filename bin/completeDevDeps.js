@@ -3,17 +3,16 @@
 
 const path = require('path');
 const xFs = require('xcraft-core-fs');
-const fse = require('fs-extra');
 
 function completeDevDeps(bundlePath) {
   const packagePath = path.join(bundlePath, 'package.json');
-  const packageDef = fse.readJSONSync(packagePath);
+  const packageDef = xFs.fse.readJSONSync(packagePath);
   const nodeModulesDir = path.join(bundlePath, 'node_modules');
 
   const devDeps = xFs.lsdir(nodeModulesDir, /^goblin-/).reduce(
     (deps, mod) => {
       const packPath = path.join(nodeModulesDir, mod, 'package.json');
-      const _package = fse.readJSONSync(packPath);
+      const _package = xFs.fse.readJSONSync(packPath);
       deps = {...deps, ..._package.devDependencies};
       return deps;
     },
@@ -23,7 +22,7 @@ function completeDevDeps(bundlePath) {
   packageDef.devDependencies = Object.fromEntries(
     new Map([...Object.entries(devDeps)].sort())
   );
-  fse.writeJSONSync(packagePath, packageDef, {spaces: 2});
+  xFs.fse.writeJSONSync(packagePath, packageDef, {spaces: 2});
 }
 
 function main(args) {

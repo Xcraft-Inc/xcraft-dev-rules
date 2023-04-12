@@ -16,12 +16,16 @@ module.exports = {
     es6: true,
   },
   parser: 'babel-eslint',
-  plugins: ['react', 'babel'],
-  extends: ['prettier', 'eslint:recommended', 'plugin:react/recommended'],
+  plugins: ['react', 'babel', 'jsdoc'],
+  extends: [
+    'prettier',
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:jsdoc/recommended',
+  ],
   rules: {
     // Other rules
     'no-console': 'off',
-    'valid-jsdoc': ['error', {requireReturn: false}],
     'eqeqeq': 'error',
     'react/display-name': 'off',
   },

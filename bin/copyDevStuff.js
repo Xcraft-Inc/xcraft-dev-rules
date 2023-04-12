@@ -82,7 +82,7 @@ function copyDevStuff(bundlePath) {
   }
   outDef.prettier = 'xcraft-dev-prettier';
 
-  fse.writeFileSync(outPackageJson, JSON.stringify(outDef, null, 2));
+  fse.writeJSONSync(outPackageJson, outDef, {spaces: 2});
   console.log('inject prettier in the package.json file');
 }
 

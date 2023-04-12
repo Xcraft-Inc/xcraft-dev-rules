@@ -14,6 +14,10 @@ function completeDevDeps(bundlePath) {
       const packPath = path.join(nodeModulesDir, mod, 'package.json');
       const _package = xFs.fse.readJSONSync(packPath);
 
+      if (!_package.devDependencies) {
+        return deps;
+      }
+
       Object.keys(_package.devDependencies)
         .filter((pkg) => !/^xcraft-|goblin-/.test(pkg))
         .forEach((pkg) => delete _package.devDependencies[pkg]);

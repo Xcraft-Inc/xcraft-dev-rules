@@ -1,6 +1,6 @@
 {
   "name": "xcraft-dev-rules",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "Xcraft source code development rules",
   "bin": {
     "xcraft-dev-rules": "bin/copyDevStuff.js",

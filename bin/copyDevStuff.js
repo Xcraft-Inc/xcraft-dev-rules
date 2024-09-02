@@ -19,7 +19,7 @@ function copyDevStuff(bundlePath) {
       outDir: '.',
     },
     {
-      file: '.eslintrc.js',
+      file: 'eslint.config.js',
       outDir: '.',
     },
   ];
